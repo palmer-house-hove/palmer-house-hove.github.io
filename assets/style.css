@@ -132,6 +132,40 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 tbody tr:last-child td { border-bottom: 0; }
 tfoot td { font-weight: 700; background: var(--surface-2); border-bottom: 0; }
 
+/* Running costs */
+.cost-table { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.cost-table thead th:first-child { border-top-left-radius: var(--radius); }
+.cost-table thead th:last-child { border-top-right-radius: var(--radius); }
+.cost-table + h2 { margin-top: 48px; }
+
+/* Info tooltips */
+.info-wrap { position: relative; display: inline-block; vertical-align: middle; }
+.info {
+  display: inline-grid; place-items: center; width: 18px; height: 18px; margin-left: 4px; padding: 0;
+  border: 1.5px solid currentColor; border-radius: 50%; background: none; color: var(--muted);
+  font: italic 600 11px/1 Georgia, serif; cursor: pointer;
+}
+.info::before { content: "i"; }
+.info:hover, .info-wrap.open .info { color: var(--accent); }
+.info:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tip {
+  display: none; position: absolute; z-index: 5; top: calc(100% + 8px); left: -8px;
+  width: max-content; max-width: min(280px, calc(100vw - 48px));
+  padding: 10px 12px; border-radius: 8px; background: var(--text); color: var(--bg);
+  box-shadow: 0 4px 16px rgb(20 25 40 / 0.18);
+  font-size: 0.85rem; font-weight: 400; line-height: 1.45; text-align: left; white-space: normal;
+}
+.tip-left { left: auto; right: -8px; }
+.info-wrap:hover .tip, .info-wrap.open .tip, .info:focus-visible + .tip { display: block; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 640px) {
+  /* On phones, open tooltips inline under the item so they never run off screen */
+  .info-wrap:not(:has(.tip-left)) { display: inline; position: static; }
+  .tip:not(.tip-left) { position: static; width: auto; max-width: none; margin-top: 8px; }
+  .info-wrap:not(:has(.tip-left)):hover .tip { display: none; }
+  .info-wrap.open .tip { display: block; }
+}
+
 /* Appliances */
 .room-nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 0; padding: 0; list-style: none; }
 .room-nav a {
