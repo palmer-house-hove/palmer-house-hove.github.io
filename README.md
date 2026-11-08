@@ -9,6 +9,7 @@ Plain static HTML/CSS, no build step:
 - `planning.html`: planning permission for developments around the building
 - `updates.html`: timeline of updates
 - `faq.html`: frequently asked questions
+- `costs.html`: appliance running costs (linked from the FAQ and appliances page, not the menu)
 - `emails/`: shared emails (`index.html` is the inbox, one page per email)
 - `assets/style.css`: shared styles
 - `assets/img/`: images (WebP)
