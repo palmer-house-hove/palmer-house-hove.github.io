@@ -139,7 +139,7 @@ tfoot td { font-weight: 700; background: var(--surface-2); border-bottom: 0; }
 .cost-table + h2 { margin-top: 48px; }
 
 /* Info tooltips */
-.info-wrap { position: relative; display: inline-block; vertical-align: middle; }
+.info-wrap { position: relative; display: inline-block; vertical-align: text-bottom; line-height: 1; }
 .info {
   display: inline-grid; place-items: center; width: 18px; height: 18px; margin-left: 4px; padding: 0;
   border: 1.5px solid currentColor; border-radius: 50%; background: none; color: var(--muted);
@@ -156,14 +156,18 @@ tfoot td { font-weight: 700; background: var(--surface-2); border-bottom: 0; }
   font-size: 0.85rem; font-weight: 400; line-height: 1.45; text-align: left; white-space: normal;
 }
 .tip-left { left: auto; right: -8px; }
-.info-wrap:hover .tip, .info-wrap.open .tip, .info:focus-visible + .tip { display: block; }
+.info-wrap.open .tip, .info:focus-visible + .tip { display: block; }
+@media (hover: hover) {
+  /* Hover only on devices with a mouse; on touch screens a tap would also count as hovering */
+  .info-wrap:hover .tip { display: block; }
+}
+.nowrap { white-space: nowrap; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (max-width: 640px) {
-  /* On phones, open tooltips inline under the item so they never run off screen */
-  .info-wrap:not(:has(.tip-left)) { display: inline; position: static; }
-  .tip:not(.tip-left) { position: static; width: auto; max-width: none; margin-top: 8px; }
-  .info-wrap:not(:has(.tip-left)):hover .tip { display: none; }
-  .info-wrap.open .tip { display: block; }
+  /* On phones, tooltips span the full width of the table, just below the tapped icon */
+  .cost-table { position: relative; }
+  .info-wrap { position: static; }
+  .tip, .tip-left { left: 12px; right: 12px; top: var(--tip-top, calc(100% + 8px)); width: auto; max-width: none; }
 }
 
 /* Appliances */
